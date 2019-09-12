@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .f_l{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <!--
+    以下布局中span和p都设置为inline-block。发现两个元素虽然在同一行上，但并不对齐。
+    是基线对齐问题，进一步来说，两个 inline-block 的元素都按照默认的垂直对齐方式为什么会产生不同的对齐效果？
+    原因在于容器使用了 overflow: hidden 属性，这一属性改变了 inline-block 元素的基线位置，导致这一元素上移。
+    因此，同时设置两个元素的垂直对齐方式为非基线对齐的值，或为另一个元素添加 overflow 属性都可以解决这一问题。
+    -->
+    <!--自己尝试,只要为第一个元素设置 vertical-align 这个属性-->
+    <div style="border-top: 1px solid rgb(188,188,188);border-bottom: 1px solid rgb(188,188,188);height: 32px;">
+        <span style="background-color: #26a2ff;display: inline-block;width: 10px;height: 100%;vertical-align: bottom"></span>
+        <p style="display: inline-block;line-height: 32px;">常用功能</p>
+        <span style="display: inline-block;line-height: 32px;">哈哈哈哈</span>
+    </div>
+    <div style="margin: 50px"></div>
+
+    <!--如何让两个div处于一行,我们知道 div是块级元素,是独占一行的.一般情况下,两个相邻的div是不会处于一行的-->
+    <!--方式一: 使用float-->
+    <div style="overflow: hidden">
+        <div style="background-color: #26a2ff; width: 40px; height: 40px;" class="f_l">
+            div1
+        </div>
+        <div style="background-color: grey; width: 40px; height: 40px;" class="f_l">
+            div2
+        </div>
+    </div>
+
+    <div style="margin: 50px"></div>
+    <!--方式二: 使用inline-block-->
+    <div style="background-color: #26a2ff; width: 40px; height: 40px; display: inline-block">
+        div1
+    </div>
+    <div style="background-color: grey; width: 40px; height: 40px; display: inline-block">
+        div2
+    </div>
+
+    <div style="margin: 50px"></div>
+
+    <div style="height: 32px">
+        <span style="display: inline-block;background-color: #26a2ff;width: 20px;height: 100%;vertical-align: bottom"></span>
+        <p style="display: inline-block;border: 1px solid gray;line-height: 30px;">我是p标签</p>
+        <p style="display: inline-block;line-height: 32px;">哈哈哈哈</p>
+    </div>
+</body>
+</html>
