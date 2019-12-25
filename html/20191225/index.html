@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    const sunzi = {
+        props: ['text', 'obj'],
+        template:`<div style="border:1px solid blue;">
+            <div>我是孙子</div>
+            <div>text: {{text}}</div>
+            <div>obj: {{obj}}</div>
+        </div>`
+    }
+    const erzi = {
+        props: ['text', 'obj'],
+        components: {
+            'sunzi': sunzi
+        },
+        template:`<div style="border:1px solid green;">
+            <div>我是儿子</div>
+            <div>text:{{text}}<input type="text" :value="text" @input="change" /></div>
+            <div>obj:{{obj}}</div>
+            <sunzi :text="text" :obj="obj"></sunzi>
+        </div>`,
+        methods: {
+            change: function (e) {
+                this.obj.a = e.target.value
+            }
+        },
+        mounted: function () {
+            var self = this
+            self.obj.a = '儿子修改了老子的东西,并传给了孙子';
+            self.text = '儿子想改老子的数据'
+        }
+    }
+    new Vue({
+        el: '#root',
+        components: {
+          'erzi': erzi
+        },
+        template: `<div style="border:1px solid red;">
+            <div>我是老子</div>
+            <div>text:{{text}}</div>
+            <div>obj:{{obj}}</div>
+            <erzi :text="text" :obj="obj"></erzi>
+        </div>`,
+        data: function () {
+            return {
+                text: '我是老子的数据',
+                obj: {
+                    a: 'obj.a',
+                    b: 'obj.b'
+                }
+            }
+        }
+    })
+</script>
+</html>
