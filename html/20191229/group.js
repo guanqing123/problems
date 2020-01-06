@@ -180,4 +180,80 @@ var fymx = [
         "FeiYongMXZ": "1"
     }
 ]
-console.log(JSON.stringify(_.groupBy(fymx, 'BianHao')));
+var fymx2 = [
+        {
+            "BianHao": "FYMX201911190015",
+            "Options": [],
+            "Type": "2",
+            "BiaoZhunFZXH": "",
+            "OcrCode": "name",
+            "FeiYongMXMC": "乘车人",
+            "FeiYongMXZ": "官青"
+        },
+        {
+            "BianHao": "FYMX201911190016",
+            "Options": [],
+            "Type": "2",
+            "BiaoZhunFZXH": "",
+            "OcrCode": "startStation",
+            "FeiYongMXMC": "出发站"
+        },
+        {
+            "BianHao": "FYMX201911190017",
+            "Options": [],
+            "Type": "2",
+            "BiaoZhunFZXH": "",
+            "OcrCode": "arriveStation",
+            "FeiYongMXMC": "到达站"
+        },
+        {
+            "BianHao": "FYMX201911190018",
+            "Options": [],
+            "Type": "3",
+            "BiaoZhunFZXH": "",
+            "OcrCode": "date",
+            "FeiYongMXMC": "出发日期"
+        },
+        {
+            "BianHao": "FYMX201911190019",
+            "Options": [],
+            "Type": "2",
+            "BiaoZhunFZXH": "",
+            "OcrCode": "seatCategory",
+            "FeiYongMXMC": "座位类型"
+        },
+        {
+            "BianHao": "FYMX201911190020",
+            "Options": [],
+            "Type": "1",
+            "BiaoZhunFZXH": "",
+            "OcrCode": "ticketPrice",
+            "FeiYongMXMC": "票价"
+        },
+        {
+            "BianHao": "FYMX201911190021",
+            "Options": [],
+            "Type": "2",
+            "BiaoZhunFZXH": "",
+            "OcrCode": "trainNum",
+            "FeiYongMXMC": "车次"
+        },
+        {
+            "Type": -1,
+            "OcrCode": "FuJianXX",
+            "FeiYongMXMC": "附件",
+            "FeiYongMXZ": "",
+            "FuJianMC": "",
+            "FuJianKey": ""
+        }
+]
+// console.log(JSON.stringify(_.groupBy(fymx, 'BianHao')));
+_.forEach(_.groupBy(fymx2, 'BianHao'), function (v, k) {
+    console.log(_.map(v, function (v) {
+        if (!v.FeiYongMXZ) {
+            return "";
+        }else{
+            return v.FeiYongMXZ;
+        }
+    }))
+})
